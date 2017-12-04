@@ -134,6 +134,10 @@ def run_test_count_sines_from():
     print('Test 1 expected:', expected)
     print('       actual:  ', answer)# Test 1:
 
+    # ------------------------------------------------------------------
+    # TO DO: 4 (continued).
+    # Below this comment, add 5 more test cases of your own choosing.
+    # ------------------------------------------------------------------
     # Test 2:
     expected2 = 0  # This is APPROXIMATELY the correct answer.
     answer2 = count_sines_from(7, 8)
@@ -146,12 +150,23 @@ def run_test_count_sines_from():
     print('Test 3 expected:', expected3)
     print('       actual:  ', answer3)
 
+    # Test 4:
+    expected4 = 1  # This is APPROXIMATELY the correct answer.
+    answer4 = count_sines_from(0,2)
+    print('Test 4 expected:', expected4)
+    print('       actual:  ', answer4)
 
-    # ------------------------------------------------------------------
-    # TO DO: 4 (continued).
-    # Below this comment, add 5 more test cases of your own choosing.
-    # ------------------------------------------------------------------
+    # Test 5:
+    expected5 = 1  # This is APPROXIMATELY the correct answer.
+    answer5 = count_sines_from(8,9)
+    print('Test 5 expected:', expected5)
+    print('       actual:  ', answer5)
 
+    # Test 6:
+    expected6 = 1  # This is APPROXIMATELY the correct answer.
+    answer6 = count_sines_from(2,3)
+    print('Test 6 expected:', expected6)
+    print('       actual:  ', answer6)
 
 def count_sines_from(m, n):
     """
