@@ -149,19 +149,19 @@ def run_test_draw_circles_from_rectangle():
 
     # Test 1:
     corner_1 = rg.Point(400,250)
-    corner_2 =rg.Point(440,325)
-    rectangle = rg.Rectangle(corner_1,corner_2)
-    rectangle.fill_color = 'green'
-    rectangle.outline_color = 'black'
-    draw_circles_from_rectangle(4,5, rectangle, window1)
+    corner_2 = rg.Point(440,300)
+    rectangle3 = rg.Rectangle(corner_1,corner_2)
+    rectangle3.fill_color = 'green'
+    rectangle3.outline_color = 'black'
+    draw_circles_from_rectangle(4, 5, rectangle3, window1)
 
     # Test 2:
-    corner_1 = rg.Point(500, 450)
-    corner_2 = rg.Point(600, 400)
-    rectangle = rg.Rectangle(corner_1, corner_2)
-    rectangle.fill_color = 'blue'
-    rectangle.outline_color = 'red'
-    draw_circles_from_rectangle(8, 3, rectangle, window1)
+    corner_1 = rg.Point(500, 400)
+    corner_2 = rg.Point(600, 450)
+    rectangle1 = rg.Rectangle(corner_1, corner_2)
+    rectangle1.fill_color = 'blue'
+    rectangle1.outline_color = 'red'
+    draw_circles_from_rectangle(3, 3, rectangle1, window1)
     window1.close_on_mouse_click()
 
     title = 'Test 3 of DRAW_CIRCLES_FROM_RECTANGLE: '
@@ -171,14 +171,13 @@ def run_test_draw_circles_from_rectangle():
     # Test 3:
     corner_1 = rg.Point(350, 280)
     corner_2 = rg.Point(375, 330)
-    rectangle = rg.Rectangle(corner_1,corner_2)
-    rectangle.fill_color = 'yellow'
-    rectangle.outline_color = 'red'
-    draw_circles_from_rectangle(6,10, rectangle, window2)
-
+    rectangle2 = rg.Rectangle(corner_1,corner_2)
+    rectangle2.fill_color = 'yellow'
+    rectangle2.outline_color = 'red'
+    draw_circles_from_rectangle(6,10, rectangle2, window2)
     window2.close_on_mouse_click()
 
-def draw_circles_from_rectangle(m, n, rectangle, window):
+def draw_circles_from_rectangle(f,  n,  rectangle, window):
     """
     What comes in:  Four arguments:
       -- Positive integers m and n.
@@ -231,20 +230,35 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
-    circle1_radius = m
-    circle1_center = rectangle.corner_1
-    circle2_radius = n
-    circle2_center = rectangle.corner_2
-    for k in range(m):
-        circle2 = rg.Circle(circle2_center, circle2_radius)
+
+    diameter1 = rectangle.corner_2.y - rectangle.corner_1.y
+    radius1= int(round(diameter1/2))
+    s = rectangle.corner_1.x-radius1
+    m =rectangle.corner_1.y + radius1
+    center1 = rg.Point(s,m)
+
+    diameter2 = rectangle.corner_2.x-rectangle.corner_1.x
+    radius2 = diameter2/2
+    b = rectangle.corner_1.x+ radius2
+    c = rectangle.corner_1.y - radius2
+    center2 = rg.Point(b,c)
+
+    for _ in range(n):
+        circle2 = rg.Circle(center2, radius2)
+        circle2.outline_color = rectangle.fill_color
+        c = c-diameter2
+        center2 = rg.Point(b,c)
         circle2.attach_to(window)
-        circle2_center = rg.Point(rectangle.corner_2.x, rectangle.corner_2.y)
-    for k in range(n):
-        rectangle = rg.Rectangle(rectangle.corner_1,rectangle.corner_2 )
-        circle1 = rg.Circle(circle1_center, circle1_radius)
+    for _ in range(f):
+        rectangle = rg.Rectangle(rectangle.corner_1,rectangle.corner_2)
+        rectangle.fill_color = rectangle.fill_color
+        rectangle.outline_color = rectangle.outline_color
+        circle1 = rg.Circle(center1, radius1)
+        circle1.fill_color = rectangle.outline_color
         circle1.attach_to(window)
         rectangle.attach_to(window)
-        circle1_center = rg.Point(rectangle.corner_1.x, rectangle.corner_1.y)
+        s = s - diameter1
+        center1 = rg.Point(s, m)
 
     window.render()
 
