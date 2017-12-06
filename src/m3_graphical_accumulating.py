@@ -188,7 +188,6 @@ def draw_lines(n, point, window):
     # ------------------------------------------------------------------
     x = point.x
     y = point.y
-    newx = point.x +100
     surprise = point.y + 100
     for k in range(n):
         point = rg.Point(x, y)
