@@ -339,7 +339,7 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type window: rg.RoseWindow
       """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # Done: 5. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -352,15 +352,17 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
-    s = (rectangle1.corner_2.x+rectangle1.corner_1.x)/2
-    m = (rectangle1.corner_2.y+rectangle1.corner_1.y)/2
-    startpoint = rg.Point(s,m)
+    a = rectangle1.get_center().x
+    b = rectangle1.get_center().y
+    c = rectangle2.get_center().x
+    d = rectangle2.get_center().y
 
-    w = (rectangle2.corner_2.x+rectangle2.corner_1.x)/2
-    q = (rectangle2.corner_2.y + rectangle2.corner_1.y)/2
-    endpoint = rg.Point(w,q)
+    startpoint = rg.Point(a,b)
+    endpoint = rg.Point(c,d)
 
-    slope = (q-m)/(w-s)
+    changeiny = (rectangle1.get_height())/2
+    changeinx = (rectangle1.get_width())/2
+
 
     for k in range(n):
         line = rg.Line(startpoint,endpoint)
@@ -368,13 +370,9 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
         rectangle1.attach_to(window)
         rectangle2.attach_to(window)
 
-        s = 2*s - rectangle1.corner_2.x
-        m = 2*m - rectangle1.corner_1.y
-        startpoint = rg.Point(s,m)
+        startpoint = rg.Point(a-changeinx*(k+1),b+changeiny*(k+1))
+        endpoint = rg.Point(c-changeinx*(k+1),d+changeiny*(k+1))
 
-        w = w
-        q = q + rectangle1.corner_2.y
-        endpoint = rg.Point(w,q)
     window.render()
 
 
